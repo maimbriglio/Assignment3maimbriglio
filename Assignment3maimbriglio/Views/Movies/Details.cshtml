@@ -1,0 +1,73 @@
+﻿@model Assignment3maimbriglio.Models.MovieViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="jumbotron styled">
+        <h1>Movie</h1>
+    </div>
+</div>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.movie.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.movie.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.movie.IMDB)
+        </dt>
+        <dd class = "col-sm-10">
+            <a href="@Model.movie.IMDB" target="_blank">IMDB Link</a>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.movie.Genre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.movie.Genre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.movie.Year)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.movie.Year)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.movie.Photo)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (@Model.movie.Photo != null)
+            {
+                     <img width="200" height="300" src="@Url.Action("GetMoviePhoto", "Movies", new {@id = @Model.movie.Id})" />
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>             
+<h1>Average Sentiment Score: @Math.Round(Model.AvgCompoundScore(),2)</h1>
+<table id="movieTable" class="table">
+    <thead>
+        <tr>
+            <th>Tweet Text</th>
+            <th>Sentiment Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tweet in Model.Tweets)
+        {
+                <tr>
+                    <td>@tweet.Text</td>
+                    <td>@tweet.Score</td>
+                </tr>
+        }
+    </tbody>
+</table>

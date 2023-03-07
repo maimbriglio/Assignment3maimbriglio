@@ -1,0 +1,46 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #a19f9d;
+}
+
+.styled {
+    background-color: #981111;
+    border-radius: 15px;
+    padding: 20px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.styled h1 {
+    color: black;
+    font-style: italic;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    color:white;
+}
+
+
